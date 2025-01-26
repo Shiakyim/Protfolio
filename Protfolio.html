@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        color: #fff;
+      }
+      /* Header */
+      header {
+        position: fixed;
+        top: 5px;
+        width: 100%;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 35px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+        transition: background-color 0.3s ease;
+      }
+      header.scrolled {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .logo {
+        font-size: 25px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav a {
+        color: #00bfff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 15px;
+        margin: 0 10px;
+        border-radius: 5px;
+        transition: background 0.3s, color 0.3s;
+      }
+      nav a:hover,
+      nav a.active {
+        background-color: #00bfff;
+        color: #000;
+      }
+      .section {
+        padding: 100px 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(3, 0, 0, 0.549);
+      }
+      #home {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+         url("https://i.postimg.cc/dVvX2NWp/Background.jpg") no-repeat center center fixed;
+        background-size: cover;
+      }
+      #case-studies {
+        background: linear-gradient(120deg, #001a33, #001f3f);
+      }
+      #testimonials {
+        background: linear-gradient(120deg, #001f3f, #001a33);
+      }
+      #recent-work {
+        background: linear-gradient(120deg, #001d3f, #001a33);
+      }
+      #contact {
+        background: linear-gradient(120deg, #001f3f, #001d3f);
+      }
+      .HomeContainer,
+      .CaseStudiesContainer,
+      .TestimonialsContainer,
+      .RecentWorkContainer,
+      .ContactContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 70%;
+        padding: 20px;
+        background-color: #000;
+        border-radius: 12px;
+        box-shadow: 0px 8px 24px rgba(0, 191, 255, 0.5);
+      }
+      h1 {
+        font-size: 2.5em;
+        color: #00bfff;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 1.1em;
+        color: #ccc;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 12px 24px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #00bfff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0px 4px 15px rgba(0, 191, 255, 0.5);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      button:hover {
+        background-color: #009acb;
+        transform: translateY(-2px);
+      }
+      .image-section img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #333;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      .image-section img:hover {
+        transform: scale(1.1);
+      }
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+        padding-left: 20px;
+        border-left: 3px solid #00bfff;
+        color: #ccc;
+      }
+      .timeline span.year {
+        font-weight: bold;
+        color: #00bfff;
+      }
+      #scrollToTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        background-color: #00bfff;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(0, 191, 255, 0.5);
+      }
+      .contact-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .contact-icons a {
+        color: #00bfff;
+        font-size: 30px;
+        margin: 0 15px;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      .contact-icons a:hover {
+        color: #009acb;
+        transform: scale(1.1);
+      }
+    
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        header {
+          padding: 10px 20px;
+          flex-direction: column;
+          align-items: center;
+        }
+        .logo {
+          font-size: 20px;
+        }
+        nav a {
+          margin: 5px 0;
+        }
+        .HomeContainer,
+        .CaseStudiesContainer,
+        .TestimonialsContainer,
+        .RecentWorkContainer,
+        .ContactContainer {
+          flex-direction: column;
+          max-width: 90%;
+        }
+        h1 {
+          font-size: 2em;
+        }
+        p {
+          font-size: 1em;
+          text-align: center;
+        }
+        button {
+          width: 100%;
+          font-size: 0.9em;
+        }
+        .timeline {
+          padding-left: 10px;
+        }
+        #scrollToTopBtn {
+          font-size: 16px;
+        }
+        .contact-icons a {
+          font-size: 25px;
+          margin: 0 10px;
+        }
+      }
+    </style>
+    
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <a class="logo">𝔎𝔶𝔦𝔪</a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#recent-work">Recent Work</a>
+        <a href="#contact">Get In Touch</a>
+      </nav>
+    </header>
+<!--Home Sections -->
+    <section id="home" class="section">
+        <div class="HomeContainer">
+          <div>
+            <h1>𝒲ℯ𝒸𝒸ℴ𝓂ℯ</h1>
+            <div class="text-decoration">
+              <p>"𝑼𝒏𝒍𝒐𝒄𝒌𝒊𝒏𝒈 𝑻𝒉𝒆 𝑷𝒐𝒘𝒆𝒓 𝑶𝒇 𝑫𝒂𝒕𝒂 𝑻𝒐 𝑫𝒓𝒊𝒗𝒆 𝑰𝒏𝒏𝒐𝒗𝒂𝒕𝒊𝒐𝒏 𝑨𝒏𝒅 𝑺𝒐𝒍𝒗𝒆 𝑪𝒐𝒎𝒑𝒍𝒆𝒙 𝑷𝒓𝒐𝒃𝒍𝒆𝒎𝒔"</p>
+              <p>"𝚆𝚎𝚕𝚌𝚘𝚖𝚎 𝚝𝚘 𝚖𝚢 𝚙𝚘𝚛𝚝𝚏𝚘𝚕𝚒𝚘! 𝙸'𝚖 𝐀𝐲𝐞𝐬𝐡𝐚 𝐓𝐚𝐫𝐢𝐪, 𝚊 𝚙𝚊𝚜𝚜𝚒𝚘𝚗𝚊𝚝𝚎 𝙳𝚊𝚝𝚊 𝚂𝚌𝚒𝚎𝚗𝚌𝚎 𝚎𝚗𝚝𝚑𝚞𝚜𝚒𝚊𝚜𝚝 𝚍𝚛𝚒𝚟𝚎𝚗 𝚋𝚢 𝚝𝚑𝚎 𝚙𝚘𝚠𝚎𝚛 𝚘𝚏 𝚍𝚊𝚝𝚊 𝚝𝚘 𝚞𝚗𝚌𝚘𝚟𝚎𝚛 𝚑𝚒𝚍𝚍𝚎𝚗 𝚒𝚗𝚜𝚒𝚐𝚑𝚝𝚜 𝚊𝚗𝚍 𝚌𝚛𝚎𝚊𝚝𝚎 𝚖𝚎𝚊𝚗𝚒𝚗𝚐𝚏𝚞𝚕 𝚜𝚘𝚕𝚞𝚝𝚒𝚘𝚗𝚜."</p>
+              <p>"Let’s explore how I use data to make a difference!"</p>
+            </div>
+          </div>
+          <div class="image-section">
+            <img
+              src="https://i.postimg.cc/ryRB5K1v/IMG-20241105-WA0026.jpg/150"
+              alt="Profile Image"
+            />
+          </div>
+        </div>
+      </section>
+<!-- Case Studies Section -->
+<section id="case-studies" class="section">
+    <div class="CaseStudiesContainer">
+      <div>
+        <h1>Education</h1>
+        <div class="education">
+          <div class="timeline">
+            <span class="year">2009 - 2012</span>
+            <span>First University - Lorem ipsum dolor sit amet.</span>
+          </div>
+          <div class="timeline">
+            <span class="year">2012 - 2015</span>
+            <span>Second University - Lorem ipsum dolor sit amet.</span>
+          </div>
+          <div class="timeline">
+            <span class="year">2015 - 2017</span>
+            <span>Third University - Lorem ipsum dolor sit amet.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="section">
+    <div class="TestimonialsContainer">
+      <div>
+        <h1>Projects</h1>
+        <div class="experience">
+          <p>"Here, you’ll find a collection of my projects, skills, and experiences that showcase my journey in transforming data into actionable knowledge."</p>
+          <div class="timeline">
+            <span class="year">2017 - 2019</span>
+            <span>First Company - Lorem ipsum dolor sit amet.</span>
+          </div>
+          <div class="timeline">
+            <span class="year">2019 - 2021</span>
+            <span>Second Company - Lorem ipsum dolor sit amet.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Work Section -->
+  <section id="recent-work" class="section">
+    <div class="RecentWorkContainer">
+      <div>
+        <h1>Recent Work</h1>
+        <p>Check out some of my latest projects and creative work.</p>
+      </div>
+    </div>
+  </section>
+<!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="ContactContainer">
+        <div>
+          <h1>Get In Touch</h1>
+          <p>Contact me on your preferred platform below:</p>
+          <div>
+            <div class="contact-icons">
+              <a title="Email"><i class="fas fa-envelope"></i></a>
+              <a title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a title="Skype"><i class="fab fa-skype"></i></a>  
+              <a title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+      </div>
+    </section>
+  </body>
+</html>
